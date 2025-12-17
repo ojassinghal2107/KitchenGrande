@@ -1,0 +1,463 @@
+/* Custom CSS for Dream Kitchens Theme */
+
+/* --- GENERAL & UTILITY --- */
+:root {
+    --primary-color: #262a42; /* A deep blue for primary actions/branding */
+    --secondary-color: #3a352d; /* An orange/amber for accents */
+    --success-color: #385139; /* Green for CTAs like WhatsApp */
+    --dark-color: #212529;
+    --light-color: #cad5e1;
+}
+/*
+ * ------------------------------------
+ * 5. ENQUIRY FORM SECTION STYLES
+ * ------------------------------------
+ */
+.enquiry-bg {
+    /* Replace 'path/to/your/image.jpg' with the actual path to your kitchen image */
+    background: url('/images/island2.jpg') no-repeat center center; 
+    background-size: cover;
+    position: relative;
+    padding-top: 5rem !important; /* Ensure padding is enforced */
+    padding-bottom: 5rem !important; /* Ensure padding is enforced */
+}
+
+/* Optional: To make the text (Ready for your Dream Kitchen?) stand out against the image */
+.enquiry-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Dark overlay for better text contrast */
+    background: rgba(0, 0, 0, 0.3); 
+    z-index: 1;
+}
+
+/* Ensure content is above the overlay */
+.enquiry-bg .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Style for the form container (optional, Bootstrap utility class handles most of it) */
+.enquiry-bg form {
+    /* Bootstrap's bg-opacity-75 handles the transparency, but you can override here if needed */
+    border: 1px solid rgba(0, 0, 0, 0.1); 
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+}
+
+/* Ensure the body has no extra padding/margin */
+body {
+    padding-top: 0px; /* Space for the fixed navbar */
+}
+
+/* --- NAVIGATION BAR --- */
+.navbar-dark {
+    background-color: var(--dark-color) !important;
+}
+
+.nav-item-animated::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width .3s;
+}
+
+.nav-item-animated:hover::after,
+.nav-item-animated.active::after {
+    width: 100%;
+}
+
+/* Dropdown Animation (optional, requires Bootstrap JS) */
+.dropdown-menu {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.3s, opacity 0.3s;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* --- HERO SECTION (Simplifying background to focus on CTA image) --- */
+/* --- HERO SECTION (Updated for Full Background Image) --- */
+/* --- HERO SECTION (Updated for Full Background Image - using kitchen_hero.jpg) --- */
+.hero-section {
+    /* CRITICAL: Ensure the name 'kitchen_hero.jpg' is correct! */
+    background: url('/images/kitchen_hero.jpg') no-repeat center center; 
+    
+    background-size: cover;
+    background-attachment: fixed; /* Parallax effect */
+    color: white;
+    padding: 10rem 0;
+    min-height: 85vh; 
+    text-align: center;
+    position: relative; 
+    z-index: 1;
+}
+
+/* Dark Overlay for Hero Text Readability */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* This creates the necessary dark filter over the image */
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: -1;
+}
+/* You must remove the unused .cta-strip class if you added it earlier. */
+/* ... (Keep the rest of your original CSS code for navbar, usp, cards, etc.) ... */
+
+
+/* --- USP SECTION --- */
+.usp-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.usp-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.usp-item i {
+    color: var(--primary-color);
+}
+
+/* --- DESIGN CARDS SECTION (Dynamic Content) --- */
+.design-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.design-card:hover {
+    transform: scale(1.03);
+}
+
+.design-card img {
+    display: block;
+    width: 100%;
+    height: 300px; /* Fixed height for uniformity */
+    object-fit: cover;
+    transition: opacity 0.3s;
+}
+
+.design-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.design-card:hover .design-overlay {
+    opacity: 1;
+}
+
+/* --- TESTIMONIALS --- */
+.testimonial-card {
+    border-left: 5px solid var(--secondary-color) !important;
+}
+
+.testimonial-card i {
+    color: var(--secondary-color);
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--primary-color) !important;
+}
+/* File: src/main/resources/static/css/style.css */
+
+/* ------------------------------------
+ * 9. DARK THEME STYLES (Overrides)
+ * ------------------------------------
+ */
+
+/* Target the entire body when the dark-theme class is applied */
+body.dark-theme {
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+}
+
+/* Ensure sections and cards adapt */
+body.dark-theme section,
+body.dark-theme .card,
+body.dark-theme .usp-item {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0;
+}
+
+/* Ensure all text elements are readable */
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme p,
+body.dark-theme label {
+    color: #ffffff !important;
+}
+
+/* Optional: Adjust form inputs */
+body.dark-theme .form-control {
+    background-color: #333 !important;
+    border-color: #555 !important;
+    color: #fff !important;
+}
+/* Custom Class for Hero CTA Animation */
+.animated-cta {
+    /* Slightly rounded corners */
+    border-radius: 0.5rem; 
+    /* Text shadow for better visibility against backgrounds */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.animated-cta:hover {
+    /* Subtle lift effect */
+    transform: translateY(-2px); 
+    /* Enhanced shadow on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* WhatsApp Pulse Animation (Tier 1) */
+.whatsapp-pulse {
+    animation: pulse 2s infinite;
+}
+/* ------------------------------------
+ * 6. USP CARD STYLES (Hovers & Animations)
+ * ------------------------------------
+ */
+.usp-card {
+    /* Base styling */
+    background-color: #ffffff; 
+    border: 1px solid #e9ecef;
+    min-height: 220px; /* Ensures consistent size */
+    
+    /* Smooth transition for all hover effects */
+    transition: all 0.3s ease-in-out; 
+    
+    /* Initial state for subtle animation (optional but nice) */
+    opacity: 0.9;
+}
+
+.usp-card:hover {
+    /* Hover effect: Lift the card */
+    transform: translateY(-8px); 
+    
+    /* Add a stronger shadow */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important; 
+    
+    /* Highlight color */
+    background-color: #f8f9fa;
+    
+    /* Full opacity on hover */
+    opacity: 1; 
+}
+
+/* Ensure the icon color remains vibrant on hover */
+.usp-card:hover i {
+    filter: brightness(1.1);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); /* Green shadow */
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
+}
+
+/* Extra Large Button Size (Bootstrap doesn't have an official 'xl') */
+.btn-xl {
+    padding: 1rem 3rem;
+    font-size: 1.5rem; /* Larger text */
+}
+/* ------------------------------------
+ * 1. GENERAL STYLES AND CUSTOM CLASSES
+ * ------------------------------------
+ */
+
+/* Style for buttons to create a pulsing effect on the WhatsApp button */
+.whatsapp-pulse {
+    /* Define base state */
+    position: relative;
+    overflow: hidden;
+}
+
+.whatsapp-pulse:before {
+    /* Create the pulse effect element */
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(25, 135, 84, 0.7); /* Success color with transparency */
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+    animation: whatsapp-pulse-animation 2s infinite;
+}
+
+@keyframes whatsapp-pulse-animation {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+
+/* ------------------------------------
+ * 2. USP CARD STYLES (Hovers & Animations)
+ * ------------------------------------
+ */
+.usp-card {
+    /* Base styling */
+    background-color: #ffffff; 
+    border: 1px solid #e9ecef;
+    min-height: 220px; /* Ensures consistent size */
+    
+    /* Smooth transition for all hover effects */
+    transition: all 0.3s ease-in-out; 
+    
+    /* Subtle hover effect */
+    cursor: pointer;
+}
+
+.usp-card:hover {
+    /* Hover effect: Lift the card */
+    transform: translateY(-8px); 
+    
+    /* Add a stronger shadow */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important; 
+    
+    /* Slightly change background color */
+    background-color: #f8f9fa;
+}
+
+/* ------------------------------------
+ * 3. ENQUIRY FORM SECTION
+ * ------------------------------------
+ */
+.enquiry-bg {
+    /* ⭐ Ensure you have a background image for this section ⭐ */
+    background-image: url('../images/kitchen-bg-form.jpg'); /* Adjust path to your image! */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Optional: for a parallax effect */
+    position: relative;
+}
+
+.enquiry-bg::before {
+    /* Dark overlay for better text readability */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 50% opacity black overlay */
+    z-index: 1;
+}
+
+/* Push all content above the overlay */
+.enquiry-bg > .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Ensure the form's semi-transparent background is defined */
+.bg-opacity-75 {
+    backdrop-filter: blur(5px); /* Optional: Adds a nice frosted glass effect */
+}
+/* ------------------------------------
+ * 4. PROJECT GALLERY LOAD BUTTON (New Styles)
+ * ------------------------------------
+ */
+#load-designs-btn {
+    /* Define smooth transition for all properties */
+    transition: all 0.3s ease;
+    /* Basic look */
+    letter-spacing: 1px;
+}
+
+#load-designs-btn:hover {
+    /* Subtle hover effect: lift and slightly darken */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.05);
+}
+
+/* ------------------------------------
+ * 5. PROJECT CARD STYLES (Loaded by JS)
+ * ------------------------------------
+ */
+.project-card {
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card img {
+    width: 100%;
+    height: 250px; /* Uniform height for preview */
+    object-fit: cover;
+}
+
+.project-card:hover {
+    transform: scale(1.03); /* Subtle zoom effect on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    color: white;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); /* Gradient overlay */
+}
+
+.project-card-info h5 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0;
+}
