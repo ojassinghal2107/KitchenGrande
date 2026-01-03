@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automation & Smart Features | Kitchen Grande</title>
+    
+    <link rel="icon" href="/images/logo.png" type="image/png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" /> 
+
+    <style>
+        /* TECH HERO SECTION */
+        .automation-hero {
+            background: linear-gradient(rgba(0, 20, 40, 0.85), rgba(0, 0, 0, 0.9)), 
+                        url('/images/background.png') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 120px 0 100px;
+            color: #ffffff;
+            border-bottom: 4px solid #0dcaf0; /* Cyan Tech Glow */
+        }
+
+        .automation-hero h1 {
+            color: #0dcaf0 !important; /* Cyber Blue */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        /* SMART FEATURE CARDS */
+        .feature-box {
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 5px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 20px;
+        }
+
+        [data-bs-theme="dark"] .feature-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-12px);
+            border-bottom: 5px solid #0dcaf0;
+            box-shadow: 0 15px 35px rgba(13, 202, 240, 0.2);
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background: rgba(13, 202, 240, 0.1);
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0dcaf0;
+            transition: 0.3s;
+        }
+
+        .feature-box:hover .icon-circle {
+            background: #0dcaf0;
+            color: #fff;
+            transform: rotateY(360deg);
+        }
+
+        /* GLOW EFFECT FOR BTN */
+        .btn-tech {
+            background: #0dcaf0;
+            color: #000;
+            border: none;
+            box-shadow: 0 0 15px rgba(13, 202, 240, 0.4);
+        }
+        .btn-tech:hover {
+            background: #0bb5d8;
+            color: #fff;
+            box-shadow: 0 0 25px rgba(13, 202, 240, 0.6);
+        }
+    </style>
+</head>
+
+<body data-bs-theme="light">
+    
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav" style="z-index: 2000; transition: all 0.4s ease; padding: 15px 0;">
+    <div class="container py-2 px-4" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px;">
+        <a class="navbar-brand" href="/home">
+            <img src="/images/logo.png" alt="Logo" height="45" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));" />
+        </a>
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="kitchens.html">Kitchens</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white fw-medium px-3 mx-1 dropdown-toggle" href="#" data-bs-toggle="dropdown">Wardrobe</a>
+                    <ul class="dropdown-menu border-0 shadow-lg mt-3" style="background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(10px);">
+                        <li><a class="dropdown-item text-white py-2" href="wardrobes.html">Collections</a></li>
+                        <li><a class="dropdown-item text-white py-2" href="index.html">Estimator</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="projects.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="automation.html">Automation</a></li>
+            </ul>
+
+            <div class="d-flex align-items-center gap-3">
+                <button id="themeToggle" class="btn btn-link text-white p-0 border-0">
+                    <i id="themeIcon" class="fas fa-moon fs-5"></i>
+                </button>
+                <a class="btn btn-success fw-bold px-4 py-2 whatsapp-pulse" href="https://wa.me/919425277950" style="border-radius: 50px; font-size: 0.85rem; letter-spacing: 1px;">
+                    CONSULT FREE
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <header class="automation-hero text-center">
+        <div class="container" data-aos="zoom-out">
+            <h1 class="display-3 fw-bold">Smart Living <i class="fas fa-microchip ms-2"></i></h1>
+            <p class="lead fs-4 mx-auto" style="max-width: 800px;">
+                Experience the future of home design. We integrate cutting-edge German automation to make your space intuitive, efficient, and truly modern.
+            </p>
+        </div>
+    </header>
+
+    <section class="container py-5 mt-5">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto" data-aos="fade-up">
+                <h2 class="fw-bold">Seamless Technology, Effortless Life</h2>
+                <div class="bg-primary mx-auto mb-3" style="width: 60px; height: 4px; border-radius: 2px;"></div>
+                <p class="text-muted lead">Smart features designed for the Indian home, where convenience meets luxury.</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-box p-5 h-100 text-center shadow-lg">
+                    <div class="icon-circle"><i class="fas fa-hand-pointer fa-2x"></i></div>
+                    <h5 class="fw-bold">Touchless Cabinetry</h5>
+                    <p class="text-muted small">One-touch electronic opening for overhead cabinets and drawers. Ideal for heavy trash units or spice pull-outs.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-box p-5 h-100 text-center shadow-lg">
+                    <div class="icon-circle"><i class="fas fa-lightbulb fa-2x"></i></div>
+                    <h5 class="fw-bold">Intelligent Lighting</h5>
+                    <p class="text-muted small">Motion-activated internal lighting and mood-based LED profiles controllable via smartphone apps.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-box p-5 h-100 text-center shadow-lg">
+                    <div class="icon-circle"><i class="fas fa-microphone-alt fa-2x"></i></div>
+                    <h5 class="fw-bold">Voice Integration</h5>
+                    <p class="text-muted small">Connect your space with Alexa or Google Home. Close shutters or dim lights with just your voice.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-box p-5 h-100 text-center shadow-lg">
+                    <div class="icon-circle"><i class="fas fa-tv fa-2x"></i></div>
+                    <h5 class="fw-bold">Motorized Paneling</h5>
+                    <p class="text-muted small">Hidden motorized TV lifts and retractable partitions that optimize your space at the press of a button.</p>
+                </div>
+            </div>
+
+             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="feature-box p-5 h-100 text-center shadow-lg">
+                    <div class="icon-circle"><i class="fas fa-fingerprint fa-2x"></i></div>
+                    <h5 class="fw-bold">Biometric Security</h5>
+                    <p class="text-muted small">Invisible fingerprint locks for jewelry drawers and secure pantry units integrated into your wardrobe.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="feature-box p-5 h-100 text-center shadow-lg">
+                    <div class="icon-circle"><i class="fas fa-leaf fa-2x"></i></div>
+                    <h5 class="fw-bold">Eco-Automation</h5>
+                    <p class="text-muted small">Sensors that shut down non-essential lighting and appliances when no presence is detected, saving energy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="bg-dark text-white py-5 text-center mt-5">
+        <div class="container py-4" data-aos="fade-up">
+            <h3 class="fw-bold mb-3 text-info">Ready for a Smarter Home?</h3>
+            <p class="lead mb-4 opacity-75">Talk to our tech specialists to see how we can automate your dream project.</p>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <a href="https://wa.me/919425277950" class="btn btn-tech btn-lg fw-bold px-5">
+                    <i class="fab fa-whatsapp me-2"></i> Get Smart Quote
+                </a>
+                <a href="tel:+919425277950" class="btn btn-outline-info btn-lg fw-bold px-5">
+                    <i class="fas fa-phone-alt me-2"></i> Call Specialist
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1000, once: true });
+    </script>
+    <script src="/js/theme-switcher.js"></script> 
+</body>
+</html>

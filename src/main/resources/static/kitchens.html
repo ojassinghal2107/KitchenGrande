@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modular Kitchens | Kitchen Grande</title>
+    
+    <link rel="icon" href="/images/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css"> 
+    
+    <style>
+        .kitchen-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
+                        url('/images/background.png') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .tracking-widest { letter-spacing: 4px; text-transform: uppercase; font-size: 0.85rem; }
+
+        .layout-card {
+            border-radius: 0;
+            border: none;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .layout-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+        }
+        .layout-card img {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .glass-loader-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-top: 4px solid #ffc107;
+            border-radius: 0;
+        }
+        [data-bs-theme="dark"] .glass-loader-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .design-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+            background: #000;
+        }
+        .design-card img { transition: opacity 0.3s, transform 0.5s; }
+        .design-card:hover img { opacity: 0.6; transform: scale(1.1); }
+        .design-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0; padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        }
+    </style>
+</head>
+
+<body data-bs-theme="light">
+    
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav" style="z-index: 2000; transition: all 0.4s ease; padding: 15px 0;">
+    <div class="container py-2 px-4" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px;">
+        <a class="navbar-brand" href="/home">
+            <img src="/images/logo.png" alt="Logo" height="45" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+        </a>    
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="kitchens.html">Kitchens</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white fw-medium px-3 mx-1 dropdown-toggle" href="#" data-bs-toggle="dropdown">Wardrobe</a>
+                    <ul class="dropdown-menu border-0 shadow-lg mt-3" style="background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(10px);">
+                        <li><a class="dropdown-item text-white py-2" href="wardrobes.html">Collections</a></li>
+                        <li><a class="dropdown-item text-white py-2" href="index.html">Estimator</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="projects.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="automation.html">Automation</a></li>
+            </ul>
+
+            <div class="d-flex align-items-center gap-3">
+                <button id="themeToggle" class="btn btn-link text-white p-0 border-0">
+                    <i id="themeIcon" class="fas fa-moon fs-5"></i>
+                </button>
+                <a class="btn btn-success fw-bold px-4 py-2 whatsapp-pulse" href="https://wa.me/919425277950" style="border-radius: 50px; font-size: 0.85rem; letter-spacing: 1px;">
+                    CONSULT FREE
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <header class="kitchen-hero text-center text-white">
+        <div class="container" data-aos="fade-up">
+            <span class="tracking-widest text-warning d-block mb-3">Culinary Architecture</span>
+            <h1 class="display-3 fw-bold mb-4">Kitchens Built For Life</h1>
+            <p class="lead mb-5 fs-4 mx-auto" style="max-width: 800px;">Bespoke modular solutions tailored to your space and cooking style.</p>
+            <a href="#layouts" class="btn btn-lg btn-warning fw-bold px-5 py-3 rounded-0 shadow">EXPLORE LAYOUTS</a>
+        </div>
+    </header>
+
+    <section id="layouts" class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-5" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h2 class="display-5 fw-bold mb-3">Tailored To Your Space</h2>
+                    <p class="text-muted">Choose the perfect foundation for your culinary journey.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card layout-card shadow-sm h-100">
+                        <img src="/images/Lshaped.jpg" class="card-img-top" alt="L-Shaped Kitchen">
+                        <div class="card-body p-4">
+                            <h4 class="fw-bold text-dark">L-Shaped Kitchen</h4>
+                            <p class="text-muted">Maximum counter space and perfect for open-plan living. Ensures the ideal kitchen triangle workflow.</p>
+                            <a href="#consultation" class="btn btn-sm btn-outline-primary rounded-0">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card layout-card shadow-sm h-100">
+                        <img src="/images/Ushaped.jpg" class="card-img-top" alt="U-Shaped Kitchen">
+                        <div class="card-body p-4">
+                            <h4 class="fw-bold text-dark">U-Shaped Kitchen</h4>
+                            <p class="text-muted">The storage powerhouse. Ideal for busy homes where multiple cooks work together in harmony.</p>
+                            <a href="#consultation" class="btn btn-sm btn-outline-primary rounded-0">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                    <div class="card layout-card shadow-sm h-100">
+                        <img src="/images/island2.jpg" class="card-img-top" alt="Island Kitchen">
+                        <div class="card-body p-4">
+                            <h4 class="fw-bold text-dark">Island Luxury</h4>
+                            <p class="text-muted">A social centerpiece for modern homes. Adds extra prep area and casual dining functionality.</p>
+                            <a href="#consultation" class="btn btn-sm btn-outline-primary rounded-0">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+                    <div class="card layout-card shadow-sm h-100">
+                        <img src="/images/modern.jpg" class="card-img-top" alt="Parallel Kitchen">
+                        <div class="card-body p-4">
+                            <h4 class="fw-bold text-dark">Parallel (Gallery)</h4>
+                            <p class="text-muted">The professional's choice. Extremely space-efficient and provides two dedicated work zones.</p>
+                            <a href="#consultation" class="btn btn-sm btn-outline-primary rounded-0">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-5" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h2 class="display-5 fw-bold mb-3">Your Dream Designs</h2>
+                    <p class="text-muted lead">Browse our real-world installations directly from our database.</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="glass-loader-card p-5 text-center">
+                    <div id="loading-indicator"></div> 
+                    <button id="load-designs-btn" class="btn btn-dark btn-lg px-5">
+                        REVEAL ALL DESIGNS
+                    </button>
+                </div>
+                <div class="row g-4 mt-4" id="design-cards-container"></div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5 bg-white border-top">
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="p-4 text-center h-100 border shadow-sm">
+                        <i class="fas fa-shield-virus fa-3x text-warning mb-4"></i>
+                        <h4 class="fw-bold text-dark">Durable & Long Lasting</h4>
+                        <p class="text-muted small">Built with BWP (Boiling Water Proof) Marine Grade plywood and anti-termite shields to withstand the rigors of an Indian kitchen.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-4 text-center h-100 border shadow-sm">
+                        <i class="fas fa-layer-group fa-3x text-warning mb-4"></i>
+                        <h4 class="fw-bold text-dark">Space Optimization</h4>
+                        <p class="text-muted small">From magic corners to tall larders, we ensure 100% space utilization, giving you a clutter-free cooking environment.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="p-4 text-center h-100 border shadow-sm">
+                        <i class="fas fa-cog fa-3x text-warning mb-4"></i>
+                        <h4 class="fw-bold text-dark">Premium Hardware</h4>
+                        <p class="text-muted small">Equipped with German-engineered soft-close hinges and tandem drawers for a silent and smooth culinary experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="consultation" class="py-5 bg-dark text-white">
+        <div class="container py-5 text-center">
+            <h2 class="fw-bold text-warning mb-4">Start Your Kitchen Transformation</h2>
+            <p class="mb-5 lead">Book a free design consultation and get a 3D preview of your dream kitchen.</p>
+            <a href="https://wa.me/919425277950" class="btn btn-success btn-lg px-5 py-3 fw-bold shadow">
+                <i class="fab fa-whatsapp me-2"></i> CHAT WITH A DESIGNER
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-5 border-top border-secondary">
+        <div class="container text-center">
+            <p class="mb-0 small opacity-50">&copy; 2025 Kitchen Grande | Excellence in Modular Design</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
+    <script src="/js/designloader.js"></script> 
+    <script src="/js/theme-switcher.js"></script> 
+</body>
+</html>
