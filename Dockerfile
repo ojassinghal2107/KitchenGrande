@@ -1,16 +1,14 @@
 # Stage 1: Build the jar using Maven
-FROM maven:3.8.5-openjdk-17 AS build
+# Stage 1: Build
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
-# Copy the pom.xml and source code into the container
 COPY . .
-# Build the application
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run the jar
-FROM openjdk:17-jdk-slim
+# Stage 2: Run
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
-# Copy the jar from the target folder of the build stage
-# We use a wildcard (*) so it finds your jar regardless of the version number
+# Note: Ensure your pom.xml generates a jar. This copies the built jar.
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
