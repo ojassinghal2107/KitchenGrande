@@ -7,43 +7,106 @@
     --success-color: #385139; 
     --dark-color: #212529;
     --light-color: #cad5e1;
+    --gold-accent: #ffc107; /* Added for premium feel */
 }
 
-/* * ------------------------------------
- * KITCHEN LAYOUT CARD OVERRIDES
- * ------------------------------------
- */
+/* --- UPDATED NAVIGATION BAR --- */
+/* This makes the navbar a floating pill with glass effect */
+#mainNav {
+    transition: all 0.4s ease-in-out;
+    padding: 20px 0;
+    z-index: 2000;
+}
+
+#mainNav .container {
+    background: rgba(255, 255, 255, 0.1); /* Glass effect */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px; /* Pill shape */
+    padding: 10px 25px;
+    transition: all 0.4s ease;
+}
+
+/* Solve the "White on White" issue - Triggered via Scroll */
+#mainNav.navbar-shrink {
+    padding: 10px 0;
+}
+
+#mainNav.navbar-shrink .container {
+    background: rgba(33, 37, 41, 0.95); /* Deep dark background when scrolling */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1.2px;
+    padding: 10px 15px !important;
+    position: relative;
+    transition: color 0.3s;
+}
+
+/* Attractive Animated Underline */
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gold-accent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 25px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--gold-accent) !important;
+}
+
+/* Dropdown Menu Refinement */
+.dropdown-menu {
+    background: rgba(33, 37, 41, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin-top: 15px !important;
+    padding: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.dropdown-item {
+    color: #ffffff !important;
+    font-size: 0.8rem;
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 193, 7, 0.2) !important;
+    color: var(--gold-accent) !important;
+}
+
+/* --- KITCHEN LAYOUT CARD OVERRIDES --- */
 .layout-card h4 {
-    color: #000000 !important; /* Forces the blue titles to Black */
+    color: #000000 !important;
 }
 
 /* --- ENQUIRY FORM SECTION STYLES --- */
 .enquiry-bg {
-    background: url('/images/island2.jpg') no-repeat center center; 
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/island2.jpg') no-repeat center center; 
     background-size: cover;
-    position: relative;
-    padding-top: 5rem !important; 
-    padding-bottom: 5rem !important; 
-}
-
-.enquiry-bg::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3); 
-    z-index: 1;
-}
-
-.enquiry-bg .container {
-    position: relative;
-    z-index: 2;
-}
-
-.enquiry-bg form {
-    border: 1px solid rgba(0, 0, 0, 0.1); 
+    background-attachment: fixed;
+    padding: 5rem 0 !important;
 }
 
 body {
@@ -52,244 +115,88 @@ body {
     color: var(--dark-color);
 }
 
-body {
-    padding-top: 0px; 
-}
-
-/* --- NAVIGATION BAR --- */
-.navbar-dark {
-    background-color: var(--dark-color) !important;
-}
-
-.nav-item-animated::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: var(--primary-color);
-    transition: width .3s;
-}
-
-.nav-item-animated:hover::after,
-.nav-item-animated.active::after {
-    width: 100%;
-}
-
-.dropdown-menu {
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    transition: visibility 0.3s, opacity 0.3s;
-}
-
-.dropdown-menu.show {
-    opacity: 1;
-    visibility: visible;
-}
-
+/* --- HERO SECTION --- */
 .hero-section {
-    background: url('/images/kitchen_hero.jpg') no-repeat center center; 
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/kitchen_hero.jpg') no-repeat center center; 
     background-size: cover;
     background-attachment: fixed; 
     color: white;
-    padding: 10rem 0;
-    min-height: 85vh; 
+    padding: 12rem 0;
+    min-height: 90vh; 
+    display: flex;
+    align-items: center;
     text-align: center;
-    position: relative; 
-    z-index: 1;
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6); 
-    z-index: -1;
-}
-
-/* --- USP SECTION --- */
-.usp-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.usp-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.usp-item i {
-    color: var(--primary-color);
 }
 
 /* --- DESIGN CARDS SECTION --- */
 .design-card {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease;
 }
 
 .design-card:hover {
-    transform: scale(1.03);
+    transform: translateY(-10px);
 }
 
 .design-card img {
     display: block;
     width: 100%;
-    height: 300px; 
+    height: 350px; 
     object-fit: cover;
-    transition: opacity 0.3s;
+    transition: transform 0.6s ease;
+}
+
+.design-card:hover img {
+    transform: scale(1.1);
 }
 
 .design-overlay {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    transition: opacity 0.3s;
+    height: 50%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    justify-content: flex-end;
+    padding: 25px;
+    transition: 0.3s;
 }
 
-.design-card:hover .design-overlay {
-    opacity: 1;
+/* --- USP & OTHER CARDS --- */
+.usp-card {
+    background-color: #ffffff; 
+    border: 1px solid #e9ecef;
+    min-height: 220px; 
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out; 
 }
 
-/* --- TESTIMONIALS --- */
-.testimonial-card {
-    border-left: 5px solid var(--secondary-color) !important;
+.usp-card:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important; 
 }
 
-.testimonial-card i {
-    color: var(--secondary-color);
+/* --- WHATSAPP PULSE --- */
+.whatsapp-pulse {
+    background-color: #25d366 !important;
+    border: none;
+    border-radius: 50px !important;
+    animation: whatsapp-pulse-animation 2s infinite;
+}
+
+@keyframes whatsapp-pulse-animation {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 /* --- FOOTER --- */
 footer {
     background-color: var(--primary-color) !important;
-}
-
-/* --- DARK THEME STYLES --- */
-body.dark-theme {
-    background-color: #121212; 
-    color: #e0e0e0; 
-}
-
-body.dark-theme section,
-body.dark-theme .card,
-body.dark-theme .usp-item {
-    background-color: #1e1e1e !important;
-    color: #e0e0e0;
-}
-
-body.dark-theme h1,
-body.dark-theme h2,
-body.dark-theme h3,
-body.dark-theme p,
-body.dark-theme label {
-    color: #ffffff !important;
-}
-
-body.dark-theme .form-control {
-    background-color: #333 !important;
-    border-color: #555 !important;
-    color: #fff !important;
-}
-
-.animated-cta {
-    border-radius: 0.5rem; 
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.animated-cta:hover {
-    transform: translateY(-2px); 
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25) !important;
-}
-
-.whatsapp-pulse {
-    animation: pulse 2s infinite;
-}
-
-.usp-card {
-    background-color: #ffffff; 
-    border: 1px solid #e9ecef;
-    min-height: 220px; 
-    transition: all 0.3s ease-in-out; 
-    opacity: 0.9;
-}
-
-.usp-card:hover {
-    transform: translateY(-8px); 
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important; 
-    background-color: #f8f9fa;
-    opacity: 1; 
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
-}
-
-.btn-xl {
-    padding: 1rem 3rem;
-    font-size: 1.5rem; 
-}
-
-@keyframes whatsapp-pulse-animation {
-    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-    100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
-}
-
-#load-designs-btn {
-    transition: all 0.3s ease;
-    letter-spacing: 1px;
-}
-
-#load-designs-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    filter: brightness(1.05);
-}
-
-.project-card {
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card img {
-    width: 100%;
-    height: 250px; 
-    object-fit: cover;
-}
-
-.project-card:hover {
-    transform: scale(1.03); 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.project-card-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 15px;
-    color: white;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); 
+    padding: 60px 0 20px;
 }
