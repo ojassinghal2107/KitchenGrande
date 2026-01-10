@@ -254,12 +254,36 @@
     <script src="/js/enquiryHandler.js"></script> 
     <script src="/js/theme-switcher.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            if(typeof loadDesigns === 'function') {
-                loadDesigns();
-            }
+ <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 1. Initial Load
+        if(typeof loadDesigns === 'function') {
+            loadDesigns(); 
+        }
+
+        // 2. Load More on Scroll (Intersection Observer)
+        const sentinel = document.getElementById('loading-indicator');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // If the loading spinner enters the viewport
+                if (entry.isIntersecting) {
+                    if(typeof loadDesigns === 'function') {
+                        console.log("Loading more designs...");
+                        loadDesigns();
+                    }
+                }
+            });
+        }, {
+            rootMargin: '100px' // Start loading 100px before the user reaches the bottom
         });
-    </script>
+
+        if (sentinel) {
+            observer.observe(sentinel);
+        }
+    });
+</script>
+
+
 </body>
 </html>
