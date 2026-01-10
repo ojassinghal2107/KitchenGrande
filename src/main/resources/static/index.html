@@ -84,7 +84,7 @@
 </head>
 <body data-bs-theme="light">
 
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav" style="z-index: 2000; transition: all 0.4s ease; padding: 15px 0;">
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav" style="z-index: 2000; transition: all 0.4s ease; padding: 15px 0;">
     <div class="container py-2 px-4" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px;">
         <a class="navbar-brand" href="/home">
             <img src="/images/logo.png" alt="Logo" height="45" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
@@ -130,7 +130,6 @@
             </p>
             <div class="d-flex flex-wrap justify-content-center gap-3" data-aos="zoom-in" data-aos-delay="400">
                 <a class="btn btn-lg btn-warning py-3 px-5 fw-bold rounded-0" href="kitchens.html">OUR COLLECTIONS</a>
-                <a class="btn btn-lg btn-outline-light py-3 px-5 fw-bold rounded-0" href="index.html">GET ESTIMATE</a>
             </div>
         </div>
     </header>
@@ -174,11 +173,8 @@
             
             <div id="design-cards-container" class="row g-4">
                 <div class="col-12 text-center" id="loading-indicator">
-                    <div class="glass-card p-5 border-top border-warning border-4">
-                        <h4 class="mb-4">Explore our latest work</h4>
-                        <button class="btn btn-dark btn-lg px-5 py-3 rounded-0 fw-bold" id="load-designs-btn">
-                            <i class="fas fa-sync-alt me-2"></i>LIVE DESIGNS
-                        </button>
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
             </div>
@@ -257,5 +253,13 @@
     <script src="/js/designLoader.js"></script>
     <script src="/js/enquiryHandler.js"></script> 
     <script src="/js/theme-switcher.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if(typeof loadDesigns === 'function') {
+                loadDesigns();
+            }
+        });
+    </script>
 </body>
 </html>
