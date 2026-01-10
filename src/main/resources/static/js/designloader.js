@@ -1,28 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loadDesignsBtn = document.getElementById('load-designs-btn');
     const container = document.getElementById('design-cards-container');
     const loadingIndicator = document.getElementById('loading-indicator');
+    const loadDesignsBtn = document.getElementById('load-designs-btn');
 
-    // 1. We put the logic in a function so we can use it two different ways
     const performLoad = () => {
         if (!container) return;
 
-        // Show loading spinner
+        // Ensure spinner is visible
         if (loadingIndicator) {
-            loadingIndicator.innerHTML = '<p class="lead text-warning"><i class="fas fa-spinner fa-spin me-2"></i> Loading designs...</p>';
+            loadingIndicator.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-warning" role="status"></div><p class="mt-2 text-warning">Loading Masterpieces...</p></div>';
         }
 
-        fetch('/designs')
+        // Using absolute path to ensure it works on every page
+        fetch('/designs') 
             .then(response => {
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 return response.json();
             })
             .then(designs => {
+                // CLEAR the buffering message
                 if (loadingIndicator) loadingIndicator.innerHTML = ''; 
                 container.innerHTML = ''; 
 
-                if (designs.length === 0) {
-                    container.innerHTML = '<div class="col-12 text-center"><p class="text-danger">No active designs found.</p></div>';
+                if (!designs || designs.length === 0) {
+                    container.innerHTML = '<div class="col-12 text-center"><p class="text-danger">No designs found.</p></div>';
                     return;
                 }
 
@@ -34,19 +35,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeof AOS !== 'undefined') { AOS.refresh(); }
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('Fetch Error:', error);
                 if (loadingIndicator) {
-                    loadingIndicator.innerHTML = `<p class="text-danger">Error fetching data.</p>`;
+                    loadingIndicator.innerHTML = `<div class="col-12 text-center"><p class="text-danger">Connection Error. Please refresh.</p></div>`;
                 }
             });
     };
 
-    // 2. LOGIC: Decide whether to click or load automatically
+    // LOGIC CHECK
     if (loadDesignsBtn) {
-        // If the button exists (like in kitchens.html), WAIT for the click
+        // If button exists (kitchens.html), wait for click
         loadDesignsBtn.addEventListener('click', performLoad);
     } else {
-        // If the button is NOT there (like on your new Home page), LOAD AUTOMATICALLY
+        // If no button (index.html), load immediately
         performLoad();
     }
 
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return `
             <div class="col-md-6 col-lg-4" data-aos="fade-up">
                 <div class="design-card shadow-sm bg-dark">
-                    <img src="${imageUrl}" alt="${design.name}" class="img-fluid">
+                    <img src="${imageUrl}" alt="${design.name}" class="img-fluid" style="height: 300px; width: 100%; object-fit: cover;">
                     <div class="design-overlay p-4">
                         <span class="badge bg-warning text-dark mb-2">${design.category}</span>
                         <h4 class="text-white fw-bold mb-1">${design.name}</h4>
