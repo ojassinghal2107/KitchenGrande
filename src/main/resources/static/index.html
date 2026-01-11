@@ -256,26 +256,21 @@
 
  <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // 1. Initial Load
-        if(typeof loadDesigns === 'function') {
-            loadDesigns(); 
-        }
-
-        // 2. Load More on Scroll (Intersection Observer)
+        // The sentinel is the loading indicator at the bottom
         const sentinel = document.getElementById('loading-indicator');
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // If the loading spinner enters the viewport
+                // If the spinner/indicator is visible on screen
                 if (entry.isIntersecting) {
-                    if(typeof loadDesigns === 'function') {
-                        console.log("Loading more designs...");
-                        loadDesigns();
+                    if(typeof window.loadDesigns === 'function') {
+                        console.log("Scroll trigger: Loading designs...");
+                        window.loadDesigns();
                     }
                 }
             });
         }, {
-            rootMargin: '100px' // Start loading 100px before the user reaches the bottom
+            rootMargin: '200px' // Load when user is 200px away from bottom
         });
 
         if (sentinel) {
