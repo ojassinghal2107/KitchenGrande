@@ -256,21 +256,19 @@
 
  <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // The sentinel is the loading indicator at the bottom
         const sentinel = document.getElementById('loading-indicator');
         
+        // Initial load for the top of the page
+        window.loadDesigns();
+
+        // Create the observer to watch the bottom of the page
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // If the spinner/indicator is visible on screen
-                if (entry.isIntersecting) {
-                    if(typeof window.loadDesigns === 'function') {
-                        console.log("Scroll trigger: Loading designs...");
-                        window.loadDesigns();
-                    }
-                }
-            });
+            if (entries[0].isIntersecting) {
+                // Only load if we aren't already fetching data
+                window.loadDesigns();
+            }
         }, {
-            rootMargin: '200px' // Load when user is 200px away from bottom
+            rootMargin: '200px' // Start loading slightly before reaching the bottom
         });
 
         if (sentinel) {

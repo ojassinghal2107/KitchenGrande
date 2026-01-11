@@ -1,54 +1,51 @@
-// Global scope function so HTML can call it
+// This flag prevents multiple simultaneous loads
+let isFetching = false;
+
 window.loadDesigns = function() {
     const container = document.getElementById('design-cards-container');
     const loadingIndicator = document.getElementById('loading-indicator');
 
-    if (!container) return;
+    if (!container || isFetching) return;
 
-    // Show spinner while fetching
-    if (loadingIndicator) {
-        loadingIndicator.style.display = 'block';
-    }
+    isFetching = true; // Lock the gate
 
-    fetch('/designs') 
+    // Show the spinner
+    if (loadingIndicator) loadingIndicator.style.opacity = "1";
+
+    fetch('/designs')
         .then(response => {
-            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
         })
         .then(designs => {
             if (!designs || designs.length === 0) {
-                if (container.children.length === 0) {
-                    container.innerHTML = '<div class="col-12 text-center"><p class="text-danger">No designs found.</p></div>';
-                }
+                // If no more designs, stop the observer
+                if (loadingIndicator) loadingIndicator.innerHTML = "<p class='text-muted mt-4'>All masterpieces loaded.</p>";
                 return;
             }
 
-            // Append designs instead of clearing the container
+            // Append new cards without clearing the old ones
             designs.forEach(design => {
                 const cardHtml = createDesignCard(design);
                 container.insertAdjacentHTML('beforeend', cardHtml);
             });
 
-            // Hide spinner after loading
-            if (loadingIndicator) {
-                loadingIndicator.style.display = 'none';
-            }
-
             if (typeof AOS !== 'undefined') { AOS.refresh(); }
         })
         .catch(error => {
             console.error('Fetch Error:', error);
-            if (loadingIndicator) {
-                loadingIndicator.innerHTML = `<p class="text-danger">Failed to load. Please refresh.</p>`;
-            }
+        })
+        .finally(() => {
+            isFetching = false; // Open the gate for the next scroll
+            if (loadingIndicator) loadingIndicator.style.opacity = "0";
         });
 };
 
 function createDesignCard(design) {
     const imageUrl = design.imageUrl.startsWith('/') ? design.imageUrl : '/' + design.imageUrl;
     return `
-        <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <div class="design-card shadow-sm bg-dark mb-4">
+        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+            <div class="design-card shadow-sm bg-dark">
                 <img src="${imageUrl}" alt="${design.name}" class="img-fluid" style="height: 300px; width: 100%; object-fit: cover;">
                 <div class="design-overlay p-4">
                     <span class="badge bg-warning text-dark mb-2">${design.category}</span>
@@ -57,16 +54,5 @@ function createDesignCard(design) {
                     <a href="projects.html?id=${design.id}" class="btn btn-sm btn-light fw-bold rounded-0">VIEW GALLERY</a>
                 </div>
             </div>
-        </div>
-    `;
+        </div>`;
 }
-
-// Initial check when script loads
-document.addEventListener('DOMContentLoaded', () => {
-    const loadDesignsBtn = document.getElementById('load-designs-btn');
-    if (loadDesignsBtn) {
-        loadDesignsBtn.addEventListener('click', window.loadDesigns);
-    } else {
-        window.loadDesigns();
-    }
-});
