@@ -7,7 +7,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run the jar
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-jdk-focal
 WORKDIR /app
 # Copy the jar from the target folder of the build stage
 # We use a wildcard (*) so it finds your jar regardless of the version number
