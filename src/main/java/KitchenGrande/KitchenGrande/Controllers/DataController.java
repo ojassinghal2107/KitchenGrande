@@ -48,5 +48,17 @@ public class DataController {
         
         return wardrobesrespository.findByIsActiveTrue();
     }
+    @GetMapping("/api/gallery/kitchens")
+    public ResponseEntity<List<KitchenDesign>> getKitchenGallery() {
+    
+    List<KitchenDesign> galleryKitchens = kitchenDesignRepository.findByCategory("galleryK");
+    return ResponseEntity.ok(galleryKitchens);
+}
+    @GetMapping("/api/gallery/wardrobes")
+    public ResponseEntity<List<wardrobes>> getWardrobeGallery() {
+    
+    List<wardrobes> galleryWardrobes = wardrobesrespository.findByCategory("galleryW");
+    return ResponseEntity.ok(galleryWardrobes);
+}
    
 }

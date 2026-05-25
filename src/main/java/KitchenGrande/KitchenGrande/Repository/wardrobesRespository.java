@@ -11,5 +11,6 @@ import KitchenGrande.KitchenGrande.model.wardrobes;
 public interface wardrobesRespository extends JpaRepository<wardrobes, Long> {
 
     List<wardrobes> findByIsActiveTrue();
+    List<wardrobes> findByCategory(String category);
 
 }

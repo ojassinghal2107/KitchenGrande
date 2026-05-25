@@ -1,91 +1,72 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const designsContainer = document.getElementById('designs-container');
+// /js/projectGalleryLoader.js
 
-   
-    fetch('/designs')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(designs => {
-            designsContainer.innerHTML = ''; // Clear the loading spinner
+document.addEventListener("DOMContentLoaded", () => {
+    // By default 'all' projects load honge page khulne par
+    loadGallery('all');
 
-            if (designs.length === 0) {
-                designsContainer.innerHTML = '<div class="col-12 text-center"><p class="text-muted">No designs found in the database.</p></div>';
-                return;
-            }
-
-            // Iterate through the fetched designs and create detailed cards
-            designs.forEach(design => {
-                const cardHtml = createDesignCard(design);
-                designsContainer.insertAdjacentHTML('beforeend', cardHtml);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching kitchen designs:', error);
-            designsContainer.innerHTML = `<div class="col-12 text-center"><p class="text-danger">Error fetching designs: ${error.message}. Please check your Spring Boot application logs.</p></div>`;
-        });
-});
-
-/**
- * Function to create the detailed HTML markup for a single design card.
- * Assumes the design object has: imageUrl, name, layout, and a 'details' field for description.
- */
-function createDesignCard(design) {
-    // Assuming the description field is named 'details' or 'description' in your KitchenDesign model
-    const descriptionText = design.details || design.description || "No detailed description available.";
-    const layoutType = design.layout || "Unknown Layout";
-    
-    return `
-        <div class="col-md-6 col-lg-4">
-            <div class="project-card shadow-lg border rounded overflow-hidden h-100">
-                <img src="${design.imageUrl}" class="img-fluid" alt="${design.name}" 
-                    style="width:100%; height: 250px; object-fit: cover;">
-                
-                <div class="p-4">
-                    <span class="badge bg-secondary mb-2">${layoutType} Layout</span>
-                    <h5 class="fw-bold">${design.name}</h5>
-                    
-                    <p class="small text-muted">${descriptionText}</p>
-                    
-                    <a href="#" class="btn btn-sm btn-primary mt-2">View Details</a>
-                </div>
-            </div>
-        </div>
-    `;
-}
-document.addEventListener('DOMContentLoaded', () => {
+    // Filter buttons par click listener lagao
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectItems = document.querySelectorAll('.filter-item');
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // 1. Update active state on buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // 2. Get the filter category
-            const filterValue = button.getAttribute('data-filter');
-
-            // 3. Loop through all project cards and show/hide based on the filter
-            projectItems.forEach(item => {
-                if (filterValue === 'all' || item.classList.contains(filterValue)) {
-                    // Show item with a fade-in animation
-                    item.style.display = 'block';
-                    item.style.opacity = '1';
-                } else {
-                    // Hide item
-                    item.style.display = 'none';
-                    item.style.opacity = '0';
-                }
-            });
-            
-            // Re-initialize AOS to apply animations on newly visible elements
-            if (typeof AOS !== 'undefined') {
-                 AOS.refresh();
-            }
+            const filterValue = btn.getAttribute('data-filter'); // 'all', 'kitchens', 'wardrobes'
+            loadGallery(filterValue);
         });
     });
 });
+
+async function loadGallery(type) {
+    const container = document.getElementById('designs-container');
+    container.innerHTML = `<div class="col-12 text-center py-5"><div class="spinner-border" role="status"></div></div>`;
+
+    let kitchenData = [];
+    let wardrobeData = [];
+
+    try {
+        // Aapke logic ke hisaab se sahi endpoint fetch karo
+        if (type === 'all' || type === 'kitchens') {
+            const res = await fetch('/api/gallery/kitchens'); // Fetching 'galleryK'
+            kitchenData = await res.json();
+        }
+        if (type === 'all' || type === 'wardrobes') {
+            const res = await fetch('/api/gallery/wardrobes'); // Fetching 'galleryW'
+            wardrobeData = await res.json();
+        }
+
+        container.innerHTML = ''; // Spinner clear karo
+
+        // Dono data ko display ke liye format karo
+        const allDesigns = [
+            ...kitchenData.map(d => ({...d, displayCategory: 'Kitchen'})),
+            ...wardrobeData.map(d => ({...d, displayCategory: 'Wardrobe'}))
+        ];
+
+        if (allDesigns.length === 0) {
+            container.innerHTML = `<p class="text-center text-muted fw-bold">No gallery projects found.</p>`;
+            return;
+        }
+
+        // Cards layout render karo
+        allDesigns.forEach(design => {
+            container.innerHTML += `
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                        <img src="${design.image_url}" class="card-img-top" alt="${design.name}" style="height: 250px; object-fit: cover;">
+                        <div class="card-body p-3 text-center">
+                            <span class="badge bg-warning text-dark mb-2">${design.displayCategory}</span>
+                            <h5 class="fw-bold text-dark mb-1">${design.name}</h5>
+                            <p class="text-muted small mb-0">${design.description}</p>
+                        </div>
+                    </div>
+                </div>`;
+        });
+
+        if (window.AOS) AOS.refresh();
+
+    } catch (error) {
+        console.error("Error loading gallery:", error);
+        container.innerHTML = `<p class="text-center text-danger fw-bold">Failed to load gallery items.</p>`;
+    }
+}
