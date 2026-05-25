@@ -1,17 +1,12 @@
-// /js/projectGalleryLoader.js
-
 document.addEventListener("DOMContentLoaded", () => {
-    // By default 'all' projects load honge page khulne par
-    loadGallery('all');
+    // Page load hote hi sabse pehle Kitchens (galleryK) load karo
+    loadGallery('kitchens');
 
-    // Filter buttons par click listener lagao
+    // Filter buttons par click listeners lagao (for backend fetching)
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filterValue = btn.getAttribute('data-filter'); // 'all', 'kitchens', 'wardrobes'
+            const filterValue = btn.getAttribute('data-filter'); // 'kitchens' ya 'wardrobes'
             loadGallery(filterValue);
         });
     });
@@ -19,54 +14,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadGallery(type) {
     const container = document.getElementById('designs-container');
-    container.innerHTML = `<div class="col-12 text-center py-5"><div class="spinner-border" role="status"></div></div>`;
+    
+    // 1. Pehle loader (spinner) dikhao jab data fetch ho raha ho
+    container.innerHTML = `
+        <div class="col-12 text-center py-5">
+            <div class="spinner-border" role="status"></div>
+            <p class="mt-3 text-muted fw-bold">Fetching our latest work...</p>
+        </div>`;
 
-    let kitchenData = [];
-    let wardrobeData = [];
+    let url = '';
+    let displayCategory = '';
+
+    // 2. Type ke basis par sahi Spring Boot endpoint decide karo
+    if (type === 'kitchens') {
+        url = '/api/gallery/kitchens'; // Aapka naya kitchen gallery API endpoint
+        displayCategory = 'Kitchen';
+    } else if (type === 'wardrobes') {
+        url = '/api/gallery/wardrobes'; // Aapka naya wardrobe gallery API endpoint
+        displayCategory = 'Wardrobe';
+    }
 
     try {
-        // Aapke logic ke hisaab se sahi endpoint fetch karo
-        if (type === 'all' || type === 'kitchens') {
-            const res = await fetch('/api/gallery/kitchens'); // Fetching 'galleryK'
-            kitchenData = await res.json();
+        // 3. Backend Controller ko hit karo
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-        if (type === 'all' || type === 'wardrobes') {
-            const res = await fetch('/api/gallery/wardrobes'); // Fetching 'galleryW'
-            wardrobeData = await res.json();
-        }
+        
+        const data = await response.json();
 
-        container.innerHTML = ''; // Spinner clear karo
+        // Loader clear karo
+        container.innerHTML = ''; 
 
-        // Dono data ko display ke liye format karo
-        const allDesigns = [
-            ...kitchenData.map(d => ({...d, displayCategory: 'Kitchen'})),
-            ...wardrobeData.map(d => ({...d, displayCategory: 'Wardrobe'}))
-        ];
-
-        if (allDesigns.length === 0) {
-            container.innerHTML = `<p class="text-center text-muted fw-bold">No gallery projects found.</p>`;
+        // 4. Check karo agar data khali toh nahi aaya
+        if (!data || data.length === 0) {
+            container.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted fw-bold fs-5">No live designs available in this category yet.</p>
+                </div>`;
             return;
         }
 
-        // Cards layout render karo
-        allDesigns.forEach(design => {
+        // 5. Loop chalake data ko HTML cards mein render karo
+        data.forEach(design => {
             container.innerHTML += `
                 <div class="col-md-6 col-lg-4" data-aos="zoom-in">
-                    <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 15px;">
                         <img src="${design.image_url}" class="card-img-top" alt="${design.name}" style="height: 250px; object-fit: cover;">
-                        <div class="card-body p-3 text-center">
-                            <span class="badge bg-warning text-dark mb-2">${design.displayCategory}</span>
-                            <h5 class="fw-bold text-dark mb-1">${design.name}</h5>
+                        <div class="card-body p-4 text-center">
+                            <span class="badge bg-warning text-dark mb-2 px-3 py-2 rounded-pill fw-bold" style="font-size: 0.75rem;">${displayCategory}</span>
+                            <h5 class="fw-bold text-dark mb-2">${design.name}</h5>
                             <p class="text-muted small mb-0">${design.description}</p>
                         </div>
                     </div>
                 </div>`;
         });
 
-        if (window.AOS) AOS.refresh();
+        // Animation refresh karne ke liye (AOS Library)
+        if (window.AOS) {
+            AOS.refresh();
+        }
 
     } catch (error) {
-        console.error("Error loading gallery:", error);
-        container.innerHTML = `<p class="text-center text-danger fw-bold">Failed to load gallery items.</p>`;
+        console.error("Error fetching gallery data:", error);
+        container.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <p class="text-danger fw-bold fs-5">Opps! Failed to connect to server. Please try again later.</p>
+            </div>`;
     }
 }
