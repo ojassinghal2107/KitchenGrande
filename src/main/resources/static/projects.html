@@ -19,7 +19,7 @@
                         url('/images/modern.jpg') no-repeat center center;
             background-size: cover;
             background-attachment: fixed;
-            padding: 100px 0;
+            padding: 100px 0;   
             color: white;
         }
 
@@ -28,33 +28,71 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* PREMIUM FILTERS */
-        .filter-container {
+        /* PREMIUM SLIDABLE TABS FILTER */
+        .filter-wrapper {
             margin-top: -50px; /* Overlap into hero */
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             display: inline-block;
         }
 
-        [data-bs-theme="dark"] .filter-container {
+        .sliding-tab-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 6px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.5);
+            width: 360px;
+            margin: 0 auto;
+        }
+
+        [data-bs-theme="dark"] .sliding-tab-container {
             background: rgba(33, 37, 41, 0.9);
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .filter-btn {
+            position: relative;
+            border: none;
+            background: transparent;
             border-radius: 30px;
-            padding: 10px 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            padding: 12px 0;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #6c757d !important;
+            flex: 1;
+            z-index: 2;
+            outline: none !important;
         }
 
         .filter-btn.active {
+            color: #000000 !important;
+        }
+
+        [data-bs-theme="dark"] .filter-btn.active {
+            color: #000000 !important;
+        }
+
+        /* The Slide Background Indicator */
+        .tab-slider {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            height: calc(100% - 12px);
+            width: calc(50% - 6px);
             background-color: #ffc107 !important;
-            border-color: #ffc107;
-            color: #000 !important;
+            border-radius: 30px;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        /* Slide positions */
+        .sliding-tab-container[data-active-tab="wardrobes"] .tab-slider {
+            transform: translateX(100%);
         }
 
         /* INSTAGRAM SECTION */
@@ -82,41 +120,40 @@
 <body data-bs-theme="light">
     
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav" style="z-index: 2000; transition: all 0.4s ease; padding: 15px 0;">
-    <div class="container py-2 px-4" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px;">
-        <a class="navbar-brand" href="/home">
-            <img src="/images/logo.png" alt="Logo" height="45" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
-        </a>
-        
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="container py-2 px-4" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px;">
+            <a class="navbar-brand" href="/home">
+                <img src="/images/logo.png" alt="Logo" height="45" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="kitchens.html">Kitchens</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-white fw-medium px-3 mx-1 dropdown-toggle" href="#" data-bs-toggle="dropdown">Wardrobe</a>
-                    <ul class="dropdown-menu border-0 shadow-lg mt-3" style="background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(10px);">
-                        <li><a class="dropdown-item text-white py-2" href="wardrobes.html">Collections</a></li>
-                       
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="projects.html">Gallery</a></li>
-                <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="automation.html">Online Consultation</a></li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="kitchens.html">Kitchens</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white fw-medium px-3 mx-1 dropdown-toggle" href="#" data-bs-toggle="dropdown">Wardrobe</a>
+                        <ul class="dropdown-menu border-0 shadow-lg mt-3" style="background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(10px);">
+                            <li><a class="dropdown-item text-white py-2" href="wardrobes.html">Collections</a></li>
+                        </ul>
+                    </td>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="projects.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="automation.html">Online Consultation</a></li>
+                </ul>
 
-            <div class="d-flex align-items-center gap-3">
-                <button id="themeToggle" class="btn btn-link text-white p-0 border-0">
-                    <i id="themeIcon" class="fas fa-moon fs-5"></i>
-                </button>
-                <a class="btn btn-success fw-bold px-4 py-2 whatsapp-pulse" href="https://wa.me/917869951950" style="border-radius: 50px; font-size: 0.85rem; letter-spacing: 1px;">
-                    CONTACT US
-                </a>
+                <div class="d-flex align-items-center gap-3">
+                    <button id="themeToggle" class="btn btn-link text-white p-0 border-0">
+                        <i id="themeIcon" class="fas fa-moon fs-5"></i>
+                    </button>
+                    <a class="btn btn-success fw-bold px-4 py-2 whatsapp-pulse" href="https://wa.me/917869951950" style="border-radius: 50px; font-size: 0.85rem; letter-spacing: 1px;">
+                        CONTACT US
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
     
     <header class="projects-hero text-center">
         <div class="container" data-aos="fade-down">
@@ -125,15 +162,14 @@
         </div>
     </header>
 
-    <section class="container text-center mb-5">
-        <div class="filter-container" data-aos="fade-up" data-aos-delay="200">
-            <button class="btn filter-btn active" data-filter="all">
-                <i class="fas fa-th-large me-2"></i> All Projects
-            </button>
-            <button class="btn filter-btn" data-filter="kitchens">
+    <section class="container text-center mb-5 filter-wrapper">
+        <div class="sliding-tab-container" id="tabContainer" data-active-tab="kitchens" data-aos="fade-up" data-aos-delay="200">
+            <div class="tab-slider"></div>
+            
+            <button class="btn filter-btn active" data-filter="kitchens" onclick="switchTab('kitchens')">
                 <i class="fas fa-utensils me-2"></i> Kitchens
             </button>
-            <button class="btn filter-btn" data-filter="wardrobes">
+            <button class="btn filter-btn" data-filter="wardrobes" onclick="switchTab('wardrobes')">
                 <i class="fas fa-door-closed me-2"></i> Wardrobes
             </button>
         </div>
@@ -207,5 +243,24 @@
     </script>
     <script src="/js/theme-switcher.js"></script> 
     <script src="/js/projectGalleryLoader.js"></script> 
+    
+    <script>
+        function switchTab(tabName) {
+            const container = document.getElementById('tabContainer');
+            const buttons = container.querySelectorAll('.filter-btn');
+            
+            // Set data attribute to drive slider CSS transition
+            container.setAttribute('data-active-tab', tabName);
+            
+            // Manage Active Class
+            buttons.forEach(btn => {
+                if(btn.getAttribute('data-filter') === tabName) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
