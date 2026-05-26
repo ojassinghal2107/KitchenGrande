@@ -162,18 +162,16 @@
         </div>
     </header>
 
-    <section class="container text-center mb-5 filter-wrapper">
-        <div class="sliding-tab-container" id="tabContainer" data-active-tab="kitchens" data-aos="fade-up" data-aos-delay="200">
-            <div class="tab-slider"></div>
-            
-            <button class="btn filter-btn active" data-filter="kitchens" onclick="switchTab('kitchens')">
-                <i class="fas fa-utensils me-2"></i> Kitchens
-            </button>
-            <button class="btn filter-btn" data-filter="wardrobes" onclick="switchTab('wardrobes')">
-                <i class="fas fa-door-closed me-2"></i> Wardrobes
-            </button>
-        </div>
-    </section>
+    <section class="container text-center mb-5">
+    <div class="d-inline-flex gap-3 p-2 bg-white shadow-sm rounded-pill border">
+        <button class="btn btn-warning fw-bold px-4 py-2 rounded-pill filter-btn active" data-filter="kitchens">
+            <i class="fas fa-utensils me-2"></i> Kitchens
+        </button>
+        <button class="btn btn-outline-secondary fw-bold px-4 py-2 rounded-pill filter-btn" data-filter="wardrobes">
+            <i class="fas fa-door-closed me-2"></i> Wardrobes
+        </button>
+    </div>
+</section>
 
     <section class="container mb-5 pb-5">
         <div id="designs-container" class="row g-4">
