@@ -59,17 +59,11 @@
             background-attachment: fixed;
         }
 
-        .design-card {
-            position: relative;
-            overflow: hidden;
-            background: #000;
-        }
-        .design-card img { transition: 0.5s ease; }
-        .design-card:hover img { opacity: 0.5; transform: scale(1.1); }
-        .design-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0; padding: 25px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        /* ELEGANT INTRO CARD EXTENSIONS */
+        .brand-intro-card {
+            border-top: 4px solid #ffc107 !important;
+            border-radius: 8px !important;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
         }
 
         .whatsapp-pulse {
@@ -102,7 +96,6 @@
                     <a class="nav-link text-white fw-medium px-3 mx-1 dropdown-toggle" href="#" data-bs-toggle="dropdown">Wardrobe</a>
                     <ul class="dropdown-menu border-0 shadow-lg mt-3" style="background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(10px);">
                         <li><a class="dropdown-item text-white py-2" href="wardrobes.html">Collections</a></li>
-                        
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link text-white fw-medium px-3 mx-1" href="projects.html">Gallery</a></li>
@@ -128,9 +121,8 @@
             <p class="lead mb-5 fs-4 mx-auto" style="max-width: 800px;" data-aos="fade-up" data-aos-delay="200">
                 The ultimate blend of aesthetics, functionality, and German engineering for your modern home.
             </p>
-            <div class="d-flex flex-wrap justify-content-center gap-3" data-aos="zoom-in" data-aos-delay="400">
-                <a class="btn btn-lg btn-warning py-3 px-5 fw-bold rounded-0" href="kitchens.html">OUR COLLECTION</a>
-                <a class="btn btn-lg btn-outline-light py-3 px-5 fw-bold rounded-0" href="index.html">GET ESTIMATE</a>
+            <div class="d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="400">
+                <a class="btn btn-lg btn-warning py-3 px-5 fw-bold rounded-0 tracking-widest" style="font-size: 0.95rem;" href="kitchens.html">PROCEED KITCHENS & WARDROBES</a>
             </div>
         </div>
     </header>
@@ -168,63 +160,82 @@
     <section class="py-5 bg-white">
         <div class="container py-5">
             <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold mb-3">Portfolio</h2>
+                <h2 class="display-5 fw-bold mb-3">Our Portfolio</h2>
                 <div class="bg-warning mx-auto" style="width: 80px; height: 4px;"></div>
             </div>
             
-            <div id="design-cards-container" class="row g-4">
-                <div class="col-12 text-center" id="loading-indicator">
-                    <div class="glass-card p-5 border-top border-warning border-4">
-                        <h4 class="mb-4">Explore our latest work</h4>
-                        <button class="btn btn-dark btn-lg px-5 py-3 rounded-0 fw-bold" id="load-designs-btn">
-                            <i class="fas fa-sync-alt me-2"></i>LIVE DESIGNS
-                        </button>
+            <div id="design-cards-container" class="row justify-content-center">
+                <div class="col-lg-11" data-aos="fade-up">
+                    <div class="glass-card p-5 brand-intro-card border border-light">
+                        <div class="row align-items-center g-4">
+                            <div class="col-md-3 text-center text-md-start border-end border-md-light py-2">
+                                <img src="/images/logo.png" alt="Kitchen Grande Logo" class="img-fluid mb-3" style="max-height: 70px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+                                <div class="mt-2">
+                                    <span class="text-muted small tracking-widest d-block">Founder & Director</span>
+                                    <h5 class="fw-bold text-dark mb-0 mt-1" style="letter-spacing: 0.5px;">Sumeet Bansal</h5>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-9 ps-md-4">
+                                <h4 class="fw-bold mb-3 text-dark">Setting the Benchmark for Luxury Interiors</h4>
+                                <p class="text-muted mb-4" style="line-height: 1.7; font-size: 1.05rem; text-align: justify;">
+                                    Welcome to Kitchen Grande, India's premier modular kitchen and wardrobe experience center based in Raipur. Guided by the visionary craftsmanship of Sumeet Bansal, we flawlessly harmonize German hardware technology with sleek luxury aesthetics. We tailor magnificent spaces utilizing premium textures, smart automation, and precise engineering—ensuring a timeless standard of durability and hassle-free excellence for your dream home.
+                                </p>
+                                
+                                <div class="d-flex justify-content-center justify-content-md-end mt-2">
+                                    <a href="https://wa.me/917869951950" class="btn btn-dark px-4 py-3 fw-bold rounded-0 tracking-widest text-white btn-sm shadow-sm" style="font-size: 0.8rem; letter-spacing: 1px;">
+                                        <i class="fas fa-headset me-2 text-warning"></i>ONLINE CONSULTATION
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-<section class="py-5 bg-white">
-    <div class="container py-4">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-7" data-aos="fade-right">
-                <span class="text-warning fw-bold tracking-widest d-block mb-2">Visit Us</span>
-                <h2 class="display-5 fw-bold mb-4 text-dark">Our Experience Center</h2>
-                <p class="lead text-muted mb-4">Step into the world of luxury. Explore our premium kitchen finishes, wardrobe textures, and smart automation in person at our flagship showroom.</p>
-                
-                <div class="d-flex align-items-start mb-4">
-                    <div class="bg-warning p-3 rounded-circle me-3">
-                        <i class="fas fa-location-dot text-dark"></i>
-                    </div>
-                    <div>
-                        <h5 class="fw-bold mb-1 text-dark">Main Showroom</h5>
-                        <p class="text-muted mb-0 small">Civil Lines, Raipur, Chhattisgarh 492001</p>
+
+    <section class="py-5 bg-white">
+        <div class="container py-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <span class="text-warning fw-bold tracking-widest d-block mb-2">Visit Us</span>
+                    <h2 class="display-5 fw-bold mb-4 text-dark">Our Experience Center</h2>
+                    <p class="lead text-muted mb-4">Step into the world of luxury. Explore our premium kitchen finishes, wardrobe textures, and smart automation in person at our flagship showroom.</p>
+                    
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="bg-warning p-3 rounded-circle me-3">
+                            <i class="fas fa-location-dot text-dark"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1 text-dark">Main Showroom</h5>
+                            <p class="text-muted mb-0 small">Civil Lines, Raipur, Chhattisgarh 492001</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-5" data-aos="zoom-in">
-                <div class="card border-0 shadow-lg overflow-hidden position-relative" style="border-radius: 30px;">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Kitchen+Grande+Raipur" target="_blank" class="stretched-link" style="z-index: 10;"></a>
-                    
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.9142823610486!2d81.63412537595204!3d21.235252080467595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28dd7810a9f8ff%3A0x5193a97cdfdebefd!2sKitchen%20Grande!5e0!3m2!1sen!2sin!4v1711200000000!5m2!1sen!2sin" 
-                        width="100%" 
-                        height="350" 
-                        style="border:0; pointer-events: none;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                <div class="col-lg-5" data-aos="zoom-in">
+                    <div class="card border-0 shadow-lg overflow-hidden position-relative" style="border-radius: 30px;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Kitchen+Grande+Raipur" target="_blank" class="stretched-link" style="z-index: 10;"></a>
+                        
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.9142823610486!2d81.63412537595204!3d21.235252080467595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28dd7810a9f8ff%3A0x5193a97cdfdebefd!2sKitchen%20Grande!5e0!3m2!1sen!2sin!4v1711200000000!5m2!1sen!2sin" 
+                            width="100%" 
+                            height="350" 
+                            style="border:0; pointer-events: none;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
 
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-center" style="background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 5;">
-                        <span class="text-white small fw-bold"><i class="fas fa-directions me-2 text-warning"></i>CLICK FOR DIRECTIONS</span>
+                        <div class="position-absolute bottom-0 start-0 w-100 p-3 text-center" style="background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 5;">
+                            <span class="text-white small fw-bold"><i class="fas fa-directions me-2 text-warning"></i>CLICK FOR DIRECTIONS</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section class="py-5 enquiry-bg text-white"> 
         <div class="container py-5">
@@ -291,7 +302,7 @@
                 </div>
             </div>
             <div class="text-center pt-5 mt-5 border-top border-secondary">
-                <p class="mb-0 small opacity-50">&copy; 2025 Kitchen Grande. Crafted for Excellence.</p>
+                <p class="mb-0 small opacity-50">© 2026 Kitchen Grande. Crafted for Excellence.</p>
             </div>
         </div>
     </footer>
