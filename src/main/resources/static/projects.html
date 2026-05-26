@@ -24,75 +24,8 @@
         }
 
         .projects-hero h1 {
-            color: #f8f7f3 !important; /* Premium Gold */
+            color: #f8f7f3 !important; 
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        /* PREMIUM SLIDABLE TABS FILTER */
-        .filter-wrapper {
-            margin-top: -50px; /* Overlap into hero */
-            display: inline-block;
-        }
-
-        .sliding-tab-container {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 6px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            display: flex;
-            position: relative;
-            border: 1px solid rgba(255,255,255,0.5);
-            width: 360px;
-            margin: 0 auto;
-        }
-
-        [data-bs-theme="dark"] .sliding-tab-container {
-            background: rgba(33, 37, 41, 0.9);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .filter-btn {
-            position: relative;
-            border: none;
-            background: transparent;
-            border-radius: 30px;
-            padding: 12px 0;
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            color: #6c757d !important;
-            flex: 1;
-            z-index: 2;
-            outline: none !important;
-        }
-
-        .filter-btn.active {
-            color: #000000 !important;
-        }
-
-        [data-bs-theme="dark"] .filter-btn.active {
-            color: #000000 !important;
-        }
-
-        /* The Slide Background Indicator */
-        .tab-slider {
-            position: absolute;
-            top: 6px;
-            left: 6px;
-            height: calc(100% - 12px);
-            width: calc(50% - 6px);
-            background-color: #ffc107 !important;
-            border-radius: 30px;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
-            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
-        }
-
-        /* Slide positions */
-        .sliding-tab-container[data-active-tab="wardrobes"] .tab-slider {
-            transform: translateX(100%);
         }
 
         /* INSTAGRAM SECTION */
@@ -162,22 +95,25 @@
         </div>
     </header>
 
-    <section class="container text-center mb-5">
-    <div class="d-inline-flex gap-3 p-2 bg-white shadow-sm rounded-pill border">
-        <button class="btn btn-warning fw-bold px-4 py-2 rounded-pill filter-btn active" data-filter="kitchens">
-            <i class="fas fa-utensils me-2"></i> Kitchens
-        </button>
-        <button class="btn btn-outline-secondary fw-bold px-4 py-2 rounded-pill filter-btn" data-filter="wardrobes">
-            <i class="fas fa-door-closed me-2"></i> Wardrobes
-        </button>
-    </div>
-</section>
+    <section class="container text-center my-5">
+        <div class="p-4 bg-white shadow-sm rounded-4 border d-inline-block">
+            <p class="text-muted small fw-bold text-uppercase mb-3" style="letter-spacing: 1px;">Select a Category to View Designs</p>
+            <div class="d-flex gap-3 justify-content-center">
+                <button class="btn btn-outline-warning text-dark fw-bold px-4 py-2 rounded-pill filter-btn" data-filter="kitchens">
+                    <i class="fas fa-utensils me-2"></i> Kitchens
+                </button>
+                <button class="btn btn-outline-warning text-dark fw-bold px-4 py-2 rounded-pill filter-btn" data-filter="wardrobes">
+                    <i class="fas fa-door-closed me-2"></i>  Wardrobes
+                </button>
+            </div>
+        </div>
+    </section>
 
     <section class="container mb-5 pb-5">
         <div id="designs-container" class="row g-4">
             <div class="col-12 text-center py-5">
-                <div class="spinner-border" role="status"></div>
-                <p class="mt-3 text-muted fw-bold">Fetching our latest work...</p>
+                <i class="fas fa-images text-muted mb-3" style="font-size: 3rem; opacity: 0.4;"></i>
+                <h3 class="fw-bold text-muted">Select a category for gallery</h3>
             </div>
         </div>
         
@@ -230,7 +166,7 @@
                 </div>
             </div>
             <hr class="my-4 border-light opacity-25">
-            <p class="text-center small mb-0">&copy; 2025 Kitchen Grande. All rights reserved.</p>
+            <p class="text-center small mb-0">&copy; 2026 Kitchen Grande. All rights reserved.</p>
         </div>
     </footer>
 
@@ -240,25 +176,6 @@
       AOS.init({ duration: 1000, once: true });
     </script>
     <script src="/js/theme-switcher.js"></script> 
-    <script src="/js/projectGalleryLoader.js"></script> 
-    
-    <script>
-        function switchTab(tabName) {
-            const container = document.getElementById('tabContainer');
-            const buttons = container.querySelectorAll('.filter-btn');
-            
-            // Set data attribute to drive slider CSS transition
-            container.setAttribute('data-active-tab', tabName);
-            
-            // Manage Active Class
-            buttons.forEach(btn => {
-                if(btn.getAttribute('data-filter') === tabName) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-        }
-    </script>
+    <script src="/js/projectGalleryLoader.js"></script>
 </body>
 </html>

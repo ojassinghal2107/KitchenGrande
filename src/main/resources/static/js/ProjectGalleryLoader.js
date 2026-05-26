@@ -1,22 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Page load hote hi sabse pehle Kitchens data load karo
-    loadGallery('kitchens');
-
     const filterButtons = document.querySelectorAll('.filter-btn');
     
     filterButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            // 1. Saare buttons ko wapas normal (outline) state mein lao
+            // Saare buttons se dynamic yellow background reset karo
             filterButtons.forEach(b => {
-                b.classList.remove('active', 'btn-warning');
-                b.classList.add('btn-outline-secondary');
+                b.classList.remove('btn-warning', 'text-dark');
+                b.classList.add('btn-outline-warning');
             });
 
-            // 2. Clicked button ko active (yellow) banao
-            btn.classList.add('active', 'btn-warning');
-            btn.classList.remove('btn-outline-secondary');
+            // Clicked button ko solid active yellow banao
+            btn.classList.remove('btn-outline-warning');
+            btn.classList.add('btn-warning', 'text-dark');
 
-            // 3. Category fetch karo
+            // Category fetch execute karo
             const filterValue = btn.getAttribute('data-filter');
             loadGallery(filterValue);
         });
@@ -26,10 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadGallery(type) {
     const container = document.getElementById('designs-container');
     
-    // Loader dikhao
+    // Loader ab click ke baad hi trigger hoga
     container.innerHTML = `
         <div class="col-12 text-center py-5">
-            <div class="spinner-border text-warning" role="status" style="width: 3rem; height: 3rem;"></div>
+            <div class="spinner-border text-warning" role="status"></div>
             <p class="mt-3 text-muted fw-bold">Fetching our latest work...</p>
         </div>`;
 
@@ -38,16 +35,11 @@ async function loadGallery(type) {
 
     try {
         const response = await fetch(url);
-        
-        // Agar endpoint hi nahi mila ya backend crash hai
-        if (!response.ok) {
-            throw new Error(`Server returned status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`Server returned status: ${response.status}`);
         
         const data = await response.json();
-        container.innerHTML = ''; // Clear loader
+        container.innerHTML = ''; 
 
-        // Agar database mein data nahi mila
         if (!data || data.length === 0) {
             container.innerHTML = `
                 <div class="col-12 text-center py-5">
@@ -56,7 +48,6 @@ async function loadGallery(type) {
             return;
         }
 
-        // Card rendering loop
         data.forEach(design => {
             container.innerHTML += `
                 <div class="col-md-6 col-lg-4" data-aos="zoom-in">
@@ -78,7 +69,7 @@ async function loadGallery(type) {
         container.innerHTML = `
             <div class="col-12 text-center py-5">
                 <p class="text-danger fw-bold fs-5">Oops! Failed to connect to server.</p>
-                <p class="text-muted small">Check if Spring Boot is running and endpoints are correct.</p>
+                <p class="text-muted small">Please verify if the Spring Boot Application is live.</p>
             </div>`;
     }
 }
