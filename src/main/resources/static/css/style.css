@@ -56,37 +56,101 @@ body {
     padding-top: 0px; 
 }
 
-/* --- NAVIGATION BAR --- */
-.navbar-dark {
-    background-color: var(--dark-color) !important;
+
+/* --- NAVIGATION BAR (UPDATED: ELEGANT FLOATING DARK-GLASS CAPSULE) --- */
+#mainNav {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 15px 0 !important;
+}
+
+/* Styling the existing HTML Capsule element cleanly to avoid white layout camouflage */
+#mainNav .container {
+    background: rgba(18, 18, 18, 0.92) !important; /* Premium dense dark-glass cover */
+    backdrop-filter: blur(20px) !important; /* High intensity blur behind content */
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 193, 7, 0.25) !important; /* Elegant gold border accent */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4) !important; /* Floating drop shadow for sharp contrast */
+    padding: 12px 28px !important;
+    border-radius: 100px !important; /* Maintains the sleek capsule design */
+    transition: all 0.3s ease-in-out;
+}
+
+#mainNav .container:hover {
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.55) !important;
+    border-color: rgba(255, 193, 7, 0.4) !important;
+}
+
+/* High contrast links */
+#mainNav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.25s ease-in-out;
+}
+
+#mainNav .nav-link:hover {
+    color: #ffc107 !important; /* Gold text shift on hover */
+}
+
+/* Smooth Interactive Underline Engine */
+.nav-item-animated {
+    position: relative;
 }
 
 .nav-item-animated::after {
     content: '';
-    display: block;
-    width: 0;
+    position: absolute;
+    bottom: 0px;
+    left: 15px;
+    right: 15px;
     height: 2px;
-    background: var(--primary-color);
-    transition: width .3s;
+    background: #ffc107; 
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-origin: right;
 }
 
 .nav-item-animated:hover::after,
 .nav-item-animated.active::after {
-    width: 100%;
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
-.dropdown-menu {
+/* Premium Dropdown Alignments */
+#mainNav .dropdown-menu {
     display: block;
     opacity: 0;
     visibility: hidden;
     transition: visibility 0.3s, opacity 0.3s;
+    background: #141414 !important;
+    border: 1px solid rgba(255, 193, 7, 0.2) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.65) !important;
+    padding: 8px 0 !important;
 }
 
-.dropdown-menu.show {
+#mainNav .dropdown-menu.show {
     opacity: 1;
     visibility: visible;
 }
 
+#mainNav .dropdown-item {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 0.9rem;
+    padding: 8px 20px !important;
+    transition: all 0.2s ease;
+}
+
+#mainNav .dropdown-item:hover {
+    background: rgba(255, 193, 7, 0.12) !important;
+    color: #ffc107 !important;
+    padding-left: 24px !important; /* Dynamic micro nudge */
+}
+
+
+/* --- HERO SECTION --- */
 .hero-section {
     background: url('/images/kitchen_hero.jpg') no-repeat center center; 
     background-size: cover;
