@@ -181,6 +181,21 @@ body {
     color: #ffc107 !important;
     padding-left: 28px !important; /* Smooth micro-nudge animation */
 }
+/* Fix for the white box logo - Elegant Badge Effect */
+#mainNav .navbar-brand img {
+    background-color: #ffffff !important; /* Soft pure white background */
+    padding: 6px 14px !important; /* Logo ke aaspas thodi clean breathing space */
+    border-radius: 30px !important; /* Sharp corners ko smooth capsule shape dega */
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15), 
+                inset 0 0 8px rgba(0, 0, 0, 0.05) !important; /* Bahar aur andar soft architectural shadows */
+    transition: all 0.3s ease-in-out !important;
+}
+
+/* Hover karne par logo halka sa glow aur pop karega */
+#mainNav .navbar-brand img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25) !important;
+}
 
 
 /* --- HERO SECTION --- */
