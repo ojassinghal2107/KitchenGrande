@@ -74,7 +74,7 @@ body {
     -webkit-backdrop-filter: blur(25px) !important;
     border: 1px solid rgba(255, 255, 255, 0.07) !important; /* Almost invisible boundary line */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
-    padding: 10px 40px !important;
+    padding: 14px 40px !important; /* Enhanced vertical space slightly for text/logo breathing room */
     border-radius: 16px !important; /* Sleek structural layout, not a basic circle pill */
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
@@ -107,25 +107,46 @@ body {
         border-radius: 50px !important; /* Converts smoothly into a capsule dock on scroll */
         border: 1px solid rgba(255, 193, 7, 0.3) !important; /* Sharp signature gold trim accent */
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45) !important;
-        padding: 6px 30px !important;
+        padding: 8px 35px !important;
     }
 }
 
-/* High Contrast Link Typography & Spacing */
-#mainNav .nav-link {
-    color: rgba(255, 255, 255, 0.85) !important;
-    font-size: 0.92rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase; /* Sharp aesthetic typography */
-    padding: 10px 20px !important;
-    transition: all 0.3s ease;
+/* ENHANCED LOGO ELEMENT DESIGN (Bigger and Better Shadows) */
+#mainNav .navbar-brand img {
+    height: 52px !important; /* Increased from 45px for absolute prominence */
+    width: auto !important;
+    max-width: 170px !important;
+    background-color: #ffffff !important; /* Pure white background overlay */
+    padding: 6px 16px !important; /* Perfectly proportioned badge boundaries */
+    border-radius: 30px !important; /* Smooth professional capsule edges */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 
+                0 0 12px rgba(255, 193, 7, 0.1) !important; /* Custom depth shadow mix to dissolve block box feel */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Premium Soft Text Light Glow on Hover */
+/* Interactive Logo Hover pop effect */
+#mainNav .navbar-brand img:hover {
+    transform: scale(1.06) translateY(-1px);
+    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.25), 
+                0 0 15px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* High Contrast & Upscaled Link Typography */
+#mainNav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1.02rem !important; /* Upscaled from 0.92rem for solid visibility */
+    font-weight: 600 !important; /* Bolder text weighting */
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 8px 18px !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Premium Dynamic Interactive Hover Scale */
 #mainNav .nav-link:hover {
     color: #ffc107 !important;
-    text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+    transform: scale(1.05); /* Text swells beautifully on focus */
+    text-shadow: 0 0 12px rgba(255, 193, 7, 0.45);
 }
 
 /* Modern Minimalist Dot Indicator under Active/Hover Item */
@@ -135,12 +156,12 @@ body {
 .nav-item-animated::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -4px;
     left: 50%;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     background: #ffc107;
-    border-radius: 50%; /* Rounded Dot indicator instead of a boring raw line */
+    border-radius: 50%; /* Rounded Dot indicator */
     transform: translateX(-50%) scale(0);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -171,7 +192,8 @@ body {
 
 #mainNav .dropdown-item {
     color: rgba(255, 255, 255, 0.8) !important;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     padding: 10px 24px !important;
     transition: all 0.25s ease;
 }
@@ -180,21 +202,6 @@ body {
     background: rgba(255, 193, 7, 0.08) !important;
     color: #ffc107 !important;
     padding-left: 28px !important; /* Smooth micro-nudge animation */
-}
-/* Fix for the white box logo - Elegant Badge Effect */
-#mainNav .navbar-brand img {
-    background-color: #ffffff !important; /* Soft pure white background */
-    padding: 6px 14px !important; /* Logo ke aaspas thodi clean breathing space */
-    border-radius: 30px !important; /* Sharp corners ko smooth capsule shape dega */
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15), 
-                inset 0 0 8px rgba(0, 0, 0, 0.05) !important; /* Bahar aur andar soft architectural shadows */
-    transition: all 0.3s ease-in-out !important;
-}
-
-/* Hover karne par logo halka sa glow aur pop karega */
-#mainNav .navbar-brand img:hover {
-    transform: scale(1.04);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25) !important;
 }
 
 
