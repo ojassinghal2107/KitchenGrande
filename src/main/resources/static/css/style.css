@@ -111,25 +111,29 @@ body {
     }
 }
 
-/* ENHANCED LOGO ELEMENT DESIGN (Clean Transparent & Perfectly Boxed) */
+/* ENHANCED LOGO ELEMENT DESIGN (True Transparent & Floating) */
 #mainNav .navbar-brand img {
-    height: 58px !important; /* Logo size upscaled beautifully */
+    height: 54px !important; /* Logo size perfect prominent float ke liye */
     width: auto !important;
     max-width: 190px !important;
-    background-color: transparent !important; /* Overlapping white box completely removed */
+    background-color: transparent !important; /* Safed box completely removed */
     background: transparent !important;
-    padding: 0 !important; /* Extra padding completely cleared */
+    padding: 0 !important; /* Saari purani extra padding clear */
+    margin: 0 !important;
     border-radius: 0 !important;
-    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.5)) 
-            drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.15)) !important; /* Makes transparent text pop from glass background */
+    
+    /* Premium Drop Shadow: Transparent png text ko dark background par pop out karta hai */
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.4)) 
+            drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.1)) !important;
+    
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Dynamic Interactive Logo Hover pop effect */
+/* Transparent Logo Hover Interaction */
 #mainNav .navbar-brand img:hover {
-    transform: scale(1.05) translateY(-1px);
-    filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.6)) 
-            drop-shadow(0px 0px 15px rgba(255, 193, 7, 0.25)) !important;
+    transform: scale(1.05) translateY(-1px); /* Hover par subtle lift-up */
+    filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.5)) 
+            drop-shadow(0px 0px 15px rgba(255, 193, 7, 0.25)) !important; /* Premium gold glow aura */
 }
 
 /* High Contrast & Upscaled Link Typography */
