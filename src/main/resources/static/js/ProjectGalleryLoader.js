@@ -3,100 +3,78 @@ document.addEventListener('DOMContentLoaded', () => {
     const wardrobeBtn = document.getElementById('wardrobe-btn');
     const container = document.getElementById('designs-container');
 
-    // 1. JAB KITCHEN BUTTON PAR CLICK HO
+    // Kitchen Button Click
     if (kitchenBtn) {
         kitchenBtn.addEventListener('click', () => {
-            // Loader inject karo
-            container.innerHTML = `
-                <div class="col-12 text-center py-5">
-                    <div class="spinner-border text-warning" role="status"></div>
-                    <p class="mt-3 text-muted fw-bold"><i class="fas fa-spinner fa-spin me-2"></i> Loading Kitchens...</p>
-                </div>`;
-
-            // Kitchen API call
+            container.innerHTML = '<div class="col-12 text-center py-5"><h4 class="text-muted">Loading Kitchens...</h4></div>';
+            
             fetch('/api/gallery/kitchens')
-                .then(response => {
-                    if (!response.ok) throw new Error('HTTP status ' + response.status);
-                    return response.json();
-                })
+                .then(res => res.json())
                 .then(data => {
-                    container.innerHTML = ''; // Clear indicator
-
+                    container.innerHTML = ''; // Clear existing static text
+                    
                     if (!data || data.length === 0) {
-                        container.innerHTML = '<div class="col-12 text-center py-5"><p class="text-muted fw-bold fs-5">No kitchens active.</p></div>';
+                        container.innerHTML = '<div class="col-12 text-center py-5"><p class="text-muted fw-bold">No kitchen designs found in gallery.</p></div>';
                         return;
                     }
 
-                    // Append dynamic structural cards
-                    data.forEach(design => {
-                        const cardHtml = createCardStructure(design, 'Kitchen');
-                        container.insertAdjacentHTML('beforeend', cardHtml);
+                    data.forEach(d => {
+                        // Table mapping checking safely
+                        const imgPath = d.image_url || d.imageUrl || '#';
+                        
+                        container.innerHTML += `
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 15px;">
+                                    <img src="${imgPath}" class="card-img-top" style="height:250px; object-fit:cover;" alt="${d.name}">
+                                    <div class="card-body p-4 text-center">
+                                        <h5 class="fw-bold text-dark mb-2">${d.name}</h5>
+                                        <p class="text-muted small mb-0">${d.description || 'Premium Modular Layout'}</p>
+                                    </div>
+                                </div>
+                            </div>`;
                     });
-
-                    if (window.AOS) window.AOS.refresh();
                 })
-                .catch(error => {
-                    console.error('Kitchen Fetch Error:', error);
-                    container.innerHTML = '<div class="col-12 text-center py-5"><p class="text-danger fw-bold fs-5">Failed to fetch data. Please try again.</p></div>';
+                .catch(err => {
+                    console.error("Kitchen fetch error:", err);
+                    container.innerHTML = '<div class="col-12 text-center py-5 text-danger">Failed to fetch kitchens.</div>';
                 });
         });
     }
 
-    // 2. JAB WARDROBE BUTTON PAR CLICK HO
+    // Wardrobe Button Click
     if (wardrobeBtn) {
         wardrobeBtn.addEventListener('click', () => {
-            // Loader inject karo
-            container.innerHTML = `
-                <div class="col-12 text-center py-5">
-                    <div class="spinner-border text-warning" role="status"></div>
-                    <p class="mt-3 text-muted fw-bold"><i class="fas fa-spinner fa-spin me-2"></i> Loading Wardrobes...</p>
-                </div>`;
-
-            // Wardrobe API call
+            container.innerHTML = '<div class="col-12 text-center py-5"><h4 class="text-muted">Loading Wardrobes...</h4></div>';
+            
             fetch('/api/gallery/wardrobes')
-                .then(response => {
-                    if (!response.ok) throw new Error('HTTP status ' + response.status);
-                    return response.json();
-                })
+                .then(res => res.json())
                 .then(data => {
-                    container.innerHTML = ''; // Clear indicator
-
+                    container.innerHTML = ''; // Clear existing static text
+                    
                     if (!data || data.length === 0) {
-                        container.innerHTML = '<div class="col-12 text-center py-5"><p class="text-muted fw-bold fs-5">No wardrobes active.</p></div>';
+                        container.innerHTML = '<div class="col-12 text-center py-5"><p class="text-muted fw-bold">No wardrobe designs found in gallery.</p></div>';
                         return;
                     }
 
-                    // Append dynamic structural cards
-                    data.forEach(design => {
-                        const cardHtml = createCardStructure(design, 'Wardrobe');
-                        container.insertAdjacentHTML('beforeend', cardHtml);
-                    });
+                    data.forEach(d => {
+                        const imgPath = d.image_url || d.imageUrl || '#';
 
-                    if (window.AOS) window.AOS.refresh();
+                        container.innerHTML += `
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 15px;">
+                                    <img src="${imgPath}" class="card-img-top" style="height:250px; object-fit:cover;" alt="${d.name}">
+                                    <div class="card-body p-4 text-center">
+                                        <h5 class="fw-bold text-dark mb-2">${d.name}</h5>
+                                        <p class="text-muted small mb-0">${d.description || 'Premium Wardrobe Layout'}</p>
+                                    </div>
+                                </div>
+                            </div>`;
+                    });
                 })
-                .catch(error => {
-                    console.error('Wardrobe Fetch Error:', error);
-                    container.innerHTML = '<div class="col-12 text-center py-5"><p class="text-danger fw-bold fs-5">Failed to fetch data. Please try again.</p></div>';
+                .catch(err => {
+                    console.error("Wardrobe fetch error:", err);
+                    container.innerHTML = '<div class="col-12 text-center py-5 text-danger">Failed to fetch wardrobes.</div>';
                 });
         });
-    }
-
-    // CLEAN SINGLE CARD HTML TEMPLATE
-    function createCardStructure(design, categoryName) {
-        const rawUrl = design.image_url || design.imageUrl || '';
-        const imageUrl = rawUrl.startsWith('/') ? rawUrl : '/' + rawUrl;
-
-        return `
-            <div class="col-md-6 col-lg-4" data-aos="zoom-in">
-                <div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 15px;">
-                    <img src="${imageUrl}" class="card-img-top" alt="${design.name}" style="height: 250px; object-fit: cover;">
-                    <div class="card-body p-4 text-center">
-                        <span class="badge bg-warning text-dark mb-2 px-3 py-2 rounded-pill fw-bold" style="font-size: 0.75rem;">${categoryName}</span>
-                        <h5 class="fw-bold text-dark mb-2">${design.name}</h5>
-                        <p class="text-muted small mb-0">${design.description || 'Premium Modular Design'}</p>
-                    </div>
-                </div>
-            </div>
-        `;
     }
 });
