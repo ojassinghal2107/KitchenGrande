@@ -111,7 +111,7 @@ body {
     }
 }
 
-/* ENHANCED LOGO ELEMENT DESIGN (True Transparent & Floating) */
+/* ENHANCED LOGO ELEMENT DESIGN (True Transparent & Floating with Entry Animation) */
 #mainNav .navbar-brand img {
     height: 54px !important; /* Logo size perfect prominent float ke liye */
     width: auto !important;
@@ -126,14 +126,32 @@ body {
     filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.4)) 
             drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.1)) !important;
     
+    /* 🚀 PURE CSS LOGO REVEAL ENGINE (GIF Style Opening without the loop issue) */
+    animation: logoOpening Reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: left center; /* Animation left se smoothly expand hogi */
+    
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Transparent Logo Hover Interaction */
+/* 💎 Keyframes for Smooth Reveal, Scaling & Custom Blur-to-Sharp Transition */
+@keyframes logoOpeningReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) translateX(-25px);
+        filter: blur(6px) drop-shadow(0 0 0 rgba(0,0,0,0));
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+        filter: blur(0) drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.4)) !important;
+    }
+}
+
+/* Transparent Logo Hover Interaction (Will work flawlessly after animation finishes) */
 #mainNav .navbar-brand img:hover {
-    transform: scale(1.05) translateY(-1px); /* Hover par subtle lift-up */
+    transform: scale(1.05) translateY(-1px) !important; /* Subtle hover lift */
     filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.5)) 
-            drop-shadow(0px 0px 15px rgba(255, 193, 7, 0.25)) !important; /* Premium gold glow aura */
+            drop-shadow(0px 0px 15px rgba(255, 193, 7, 0.25)) !important; /* Golden premium glow aura */
 }
 
 /* High Contrast & Upscaled Link Typography */
