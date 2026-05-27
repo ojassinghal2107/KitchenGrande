@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         <p class="small text-muted">${descriptionText.substring(0, 80)}...</p>
                         
-                        <a href="wardrobes-detail.html?id=${wardrobe.id}" class="btn btn-sm btn-primary mt-2">View Design</a>
+                        <a href="wardrobes-detail.html?id=${wardrobe.id}" class="btn btn-sm btn-primary mt-2"></a>
                     </div>
                 </div>
             </div>
