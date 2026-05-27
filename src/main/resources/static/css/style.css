@@ -111,30 +111,31 @@ body {
     }
 }
 
-/* ENHANCED LOGO ELEMENT DESIGN (Bigger and Better Shadows) */
+/* ENHANCED LOGO ELEMENT DESIGN (Clean Transparent & Perfectly Boxed) */
 #mainNav .navbar-brand img {
-    height: 52px !important; /* Increased from 45px for absolute prominence */
+    height: 58px !important; /* Logo size upscaled beautifully */
     width: auto !important;
-    max-width: 170px !important;
-    background-color: #ffffff !important; /* Pure white background overlay */
-    padding: 6px 16px !important; /* Perfectly proportioned badge boundaries */
-    border-radius: 30px !important; /* Smooth professional capsule edges */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 
-                0 0 12px rgba(255, 193, 7, 0.1) !important; /* Custom depth shadow mix to dissolve block box feel */
+    max-width: 190px !important;
+    background-color: transparent !important; /* Overlapping white box completely removed */
+    background: transparent !important;
+    padding: 0 !important; /* Extra padding completely cleared */
+    border-radius: 0 !important;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.5)) 
+            drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.15)) !important; /* Makes transparent text pop from glass background */
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Interactive Logo Hover pop effect */
+/* Dynamic Interactive Logo Hover pop effect */
 #mainNav .navbar-brand img:hover {
-    transform: scale(1.06) translateY(-1px);
-    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.25), 
-                0 0 15px rgba(255, 255, 255, 0.2) !important;
+    transform: scale(1.05) translateY(-1px);
+    filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.6)) 
+            drop-shadow(0px 0px 15px rgba(255, 193, 7, 0.25)) !important;
 }
 
 /* High Contrast & Upscaled Link Typography */
 #mainNav .nav-link {
     color: rgba(255, 255, 255, 0.9) !important;
-    font-size: 1.02rem !important; /* Upscaled from 0.92rem for solid visibility */
+    font-size: 1.02rem !important; /* Upscaled for solid visibility */
     font-weight: 600 !important; /* Bolder text weighting */
     letter-spacing: 0.8px;
     text-transform: uppercase;
